@@ -1,9 +1,17 @@
 :root {
   --primary-bg: rgb(42, 43, 50);
   --primary-text: white;
+  --search-text: rgb(196, 184, 184);
   --container-bg: #415163;
   --hover-bg: #6b829d;
   --active-bg: #415163;
+
+  /* light bg colors */
+  /* --light-primary-bg: #e8e8e8;
+  --light-primary-text: #333333;
+  --light-container-bg: #d0d0d0;
+  --light-hover-bg: #777575;
+  --light-active-bg: #d0d0d0; */
 }
 
 * {
@@ -36,11 +44,11 @@ body {
   background-color: var(--container-bg);
   border: none;
   font-size: 16px;
-  color: white;
+  color: var(--primary-text);
 }
 
 .city-search::placeholder {
-  color: rgb(196, 184, 184);
+  color: var(--search-text);
 }
 
 .search-btn {
@@ -60,6 +68,40 @@ body {
 
 .search-btn:active {
   background-color: var(--active-bg);
+}
+
+#theme-toggle {
+  display: none;
+}
+
+label[for="theme-toggle"] {
+  width: 60px;
+  height: 32px;
+  background-color: var(--container-bg);
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.slider {
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary-text);
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.4s ease;
+}
+
+#theme-toggle:checked + label .slider {
+    transform: translateX(28px);
+}
+
+#theme-toggle:hover + label {
+    background-color: var(--hover-bg);
 }
 
 h1 {
@@ -204,11 +246,18 @@ h1 {
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
 }
 
 .shake {
-    animation: shake 0.3s ease-in-out;
+  animation: shake 0.3s ease-in-out;
 }

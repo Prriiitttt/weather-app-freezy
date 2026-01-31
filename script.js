@@ -7,6 +7,8 @@ const windValue = document.querySelector(".wind-value");
 const visibilityValue = document.querySelector(".visibility-value");
 const humidityValue = document.querySelector(".humidity-value");
 const weatherIcon = document.querySelector(".weather-icon");
+const themeToggle = document.querySelector("#theme-toggle")
+const savedTheme = localStorage.getItem('theme')
 const default_city = "Toronto";
 const API_KEY = "76bfd5d71d5a1421d88942aaf407dfe3";
 
@@ -91,3 +93,34 @@ function getWeatherIcon(weatherCondition) {
 }
 
 getWeather("Toronto");
+
+function applyTheme(theme) {
+    const root = document.documentElement;
+
+    if(theme === "light") {
+        root.style.setProperty("--primary-bg", "#e8e8e8");
+        root.style.setProperty("--primary-text", "#333333");
+        root.style.setProperty("--search-text", "rgb(101, 91, 91)");
+        root.style.setProperty("--container-bg", "#d0d0d0");
+        root.style.setProperty("--hover-bg", "#777575");
+        root.style.setProperty("--active-bg", "#d0d0d0");
+    } else {
+        root.style.setProperty("--primary-bg", "rgb(42, 43, 50)");
+        root.style.setProperty("--primary-text", "white");
+        root.style.setProperty("--search-text", "rgb(196, 184, 184)");
+        root.style.setProperty("--container-bg", "#415163");
+        root.style.setProperty("--hover-bg", "#6b829d");
+        root.style.setProperty("--active-bg", "#415163");
+    }
+}
+
+themeToggle.addEventListener('change', () =>{
+    const theme = themeToggle.checked ? 'light' : 'dark';
+    localStorage.setItem('theme', theme);
+    applyTheme(theme);
+})
+
+if(savedTheme === 'light') {
+        themeToggle.checked = true;
+        applyTheme('light');
+    }
