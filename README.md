@@ -21,8 +21,6 @@ The app also has a dark/light theme toggle.
 3. Open `script.js` and replace `WEATHER_API` with your key
 4. Open `index.html` in your browser
 
-That's it! No build steps or installations needed.
-
 ## Features
 
 - Search weather for any(mostly) city
